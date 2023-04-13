@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Custom Search Engine</title>
+  <style>
+    .gcse-search {
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      padding: 10px;
+    }
+    input.gsc-input {
+      border: none !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      font-size: 16px;
+      width: 100%;
+    }
+    input.gsc-search-button {
+      border: none !important;
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 8px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    input.gsc-search-button:hover {
+      background-color: #3e8e41;
+    }
+
+    /* Added the following style rules */
+    @media (max-width: 768px) {
+      .gcse-search {
+        margin: 10px 0 20px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script async src="https://cse.google.com/cse.js?cx=a766119d268b64918"></script>
+  <div class="gcse-search"></div>
+</body>
+</html>
