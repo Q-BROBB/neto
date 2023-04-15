@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="language" content="he">
+    <title>נטו</title>
+    <style>
+      body {
+        margin: 0;
+      }
+             #menu-btn {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 8px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 19px 2px 4px 5px;
+			cursor: pointer;
+			border-radius: 5px;
+			width: 30px;
+			height: 30px;
+			line-height: 30px;
+		}
+		.menu {
+			position: absolute;
+			top: 60px;
+			left: 10px;
+			background-color: #f1f1f1;
+			padding: 10px;
+			border: 1px solid #ccc;
+			display: none;
+		}
+		.menu a {
+			color: black;
+			display: block;
+			padding: 10px;
+			text-decoration: none;
+			border-bottom: 1px solid #ccc;
+		}
+		.menu a:last-child {
+			border-bottom: none;
+		}
+		.menu a:hover {
+			background-color: #ddd;
+		}
+		.menu-show {
+			display: block;
+		}
+		.menu-item {
+			background-color: #4CAF50;
+			border: none;
+			color: white;
+			padding: 8px 16px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			margin: 4px 2px;
+			cursor: pointer;
+			border-radius: 5px;
+			width: 100%;
+		}
+		.menu-item:hover {
+			background-color: #3e8e41;
+		}
+		.menu-item-container {
+			display: flex;
+			flex-direction: row;
+		}
+		.menu-item-container .menu-item:first-child {
+			margin-right: 5px;
+		}
+      #wrapper {
+        background-color: #fff;
+        margin: 20px auto;
+        max-width: 800px;
+        padding: 20px;
+      }
+      h1 {
+        margin: 50px 0 30px;
+        text-align: center;
+      }
+      #search-row {
+        width: 70%;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 50px;
+        display: flex;
+        justify-content: center;
+      }
+      #search-input {
+        width: 80%;
+        padding: 10px;
+        border: none;
+        border-radius: 50px;
+      }
+      #search-button {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 50px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      #news-button {
+        background-color: #2196F3;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 50px;
+        margin-left: 10px;
+        cursor: pointer;
+      }
+      #search-row > div {
+        margin-left: auto;
+      }
+      #link-row {
+        width: 70%;
+        margin: 20px auto 0;
+        text-align: center;
+      }
+      #external-link {
+        display: inline-block;
+        background-color: #2196F3;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        font-size: 16px;
+        border-radius: 50px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+  	<button id="menu-btn">&#9874;</button>
+	<div class="menu">
+		<div class="menu-item-container">
+			<a class="menu-item" href="#">G</a>
+			<a class="menu-item" href="#">Y</a>
+		</div>
+		<div class="menu-item-container">
+			<a class="menu-item" href="#">N</a>
+			<a class="menu-item" href="#">M</a>
+		</div>
+	</div>
+    <div id="wrapper">
+      <h1>נטו, מנוע חיפוש מסונן</h1>
+      <div id="search-row">
+        <input id="search-input" type="text" placeholder="לחפש...">
+        <button id="search-button">חיפוש</button>
+      </div>
+      <div id="link-row">
+        <a id="external-link" href="#">חדשות</a>
+        <a id="news-button" href="#">יוטיוב</a>
+      </div>
+    </div>
+    <script>
+		const menuBtn = document.getElementById('menu-btn');
+		const menu = document.querySelector('.menu');
+		menuBtn.addEventListener('click', function() {
+			menu.classList.toggle('menu-show');
+		});
+		menuBtn.style.marginLeft = '10px';
+		console.log(menuBtn.offsetLeft);
+	</script>
+    <script>
+      window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const recognition = new SpeechRecognition();
+
+      const searchInput = document.querySelector('#search-input');
+      const searchButton = document.querySelector('#search-button');
+
+      recognition.lang = 'he-IL';
+
+      recognition.addEventListener('result', (e) => {
+        const transcript = Array.from(e.results)
+          .map(result => result[0])
+          .map(result => result.transcript)
+          .join('');
+
+        searchInput.value = transcript;
+      });
+
+      searchButton.addEventListener('click', () => {
+        recognition.start();
+      });
+    </script>
+  </body>
+</html>
